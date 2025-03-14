@@ -1,4 +1,5 @@
 from app.utils.database import Base
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, DateTime, func
 
 class User(Base):
@@ -11,3 +12,11 @@ class User(Base):
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now())
     
+    google_credentials = relationship("GoogleCredential", back_populates="user")
+    
+    def to_dict(self):
+     return {
+        "id": self.id,
+        "email": self.email,
+        "name": self.name,
+     }

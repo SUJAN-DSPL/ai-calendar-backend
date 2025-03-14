@@ -8,6 +8,8 @@ from alembic import context
 
 # """ Import Models"""
 from app.models.user import User
+from app.models.google_credential import GoogleCredential
+from app.models.chat_history import ChatHistory
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
