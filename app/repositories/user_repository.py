@@ -12,3 +12,12 @@ class UserRepository:
         self.db.commit()
         self.db.refresh(new_user)
         return new_user.to_dict()
+    
+    def get_user_by_email(self, email:str):
+        response = self.db.query(User).filter(User.email == email).first()
+    
+        if not response:
+            return None  
+        
+        return response.to_dict() 
+    
