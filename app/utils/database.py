@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from config import DATABASE_URL
 
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(DATABASE_URL, echo=False)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -25,8 +25,11 @@ def db_transaction(callback: callable):
 def db_query(callback: callable):
     db = SessionLocal()
     try:
-        return callback(db)
+        response = callback(db)
+        db.commit() 
+        return response
     except Exception as err:
         raise Exception(str(err))
     finally:
+        pass
         db.close()        

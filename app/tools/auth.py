@@ -20,6 +20,11 @@ def verify_jwt_token(token):
         raise cherrypy.HTTPError(401, "Invalid token")
 
 def auth_middleware():
+    if cherrypy.request.method == "OPTIONS": # to handle cors request
+            cherrypy.response.status = 200
+            cherrypy.response.body = b"ok"
+            return 
+        
     token_cookie = cherrypy.request.cookie.get("auth_token")
     token = token_cookie.value if token_cookie else None
 

@@ -26,7 +26,7 @@ class GoogleCredentialRepository:
         response = self.db.query(GoogleCredential).filter(GoogleCredential.user_id == user_id).first()
     
         if not response:
-            return None  
+            return None
         
         response_dict = response.to_dict() 
         cred_string = decrypt(response_dict["user_token"])

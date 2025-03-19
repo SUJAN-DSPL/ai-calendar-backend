@@ -60,15 +60,5 @@ class GoogleAuthService:
         
         if credentials.expired and credentials.refresh_token:
             credentials.refresh(Request())
-              
-            db_transaction(lambda db:
-                 (GoogleCredentialRepository(db)).update_user_token(user_id, {
-                "token": credentials.token,
-                "refresh_token": credentials.refresh_token,
-                "token_uri": credentials.token_uri,
-                "client_id": credentials.client_id,
-                "client_secret": credentials.client_secret,
-                "scopes": credentials.scopes
-            }))
             
         return credentials
