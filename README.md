@@ -1,6 +1,6 @@
 # AI Calendar
 
-![AI Calendar](https://uniconcloud.com/assets/images/unicon-cloud-logo.png)
+![AI Calendar](https://cdn.prod.website-files.com/6583e2b6af21ee3aa85c3013/66c2da2c9e54d874767b8217_Building%20of%20ai%20agent.jpg)
 
 ## 🚀 Overview
 AI Calendar automates calendar workflows using AI-powered scheduling and management. This project integrates **LangChain**, **CherryPy**, **SQLAlchemy**, **Alembic**, and **Google API** to create, manage, and optimize calendar events efficiently.
