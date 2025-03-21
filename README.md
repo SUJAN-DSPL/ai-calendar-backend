@@ -26,7 +26,7 @@ Follow these steps to set up and run the AI Calendar project.
 
 ### 1️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-repo/ai-calendar.git
+git clone https://github.com/SUJAN-DSPL/ai-calendar-backend.git
 cd ai-calendar
 ```
 
@@ -50,10 +50,16 @@ pip install -r requirements.txt
 ### 4️⃣ Configure Environment Variables
 Create a `.env` file and set up the following:
 ```
-DB_URL=<your-database-url>
+APP_SECRET=<app-secret>
+
+DATABASE_URL=<database-url>
+
 GOOGLE_CLIENT_ID=<your-google-client-id>
 GOOGLE_CLIENT_SECRET=<your-google-client-secret>
-GOOGLE_API_KEY=<your-google-api-key>
+GOOGLE_REDIRECT_URI =<your-google-redirect-url>
+
+CLAUDE_API_KEY=<anthropic-api-key>
+
 ```
 
 ### 5️⃣ Apply Database Migrations
