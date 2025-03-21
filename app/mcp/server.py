@@ -2,6 +2,8 @@ from datetime import datetime
 import sys
 import os
 
+import pytz
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..","..")))
 
 from mcp.server.fastmcp import FastMCP
@@ -11,10 +13,11 @@ mcp = FastMCP("google_calendar_api")
 service = GoogleCalendarService()
 
 @mcp.tool()
-def current_date() -> str:
-    """tool to get current date """
-    current_date = datetime.today().strftime('%Y-%m-%d')
-    return current_date
+def current_date_time() -> str:
+    """tool to get current date time """
+    india_tz = pytz.timezone('Asia/Kolkata')
+    current_datetime = datetime.now(india_tz).strftime('%Y-%m-%d %H:%M:%S')
+    return current_datetime
 
 @mcp.tool()
 def create_meeting(meetingJsonData) -> int:
@@ -23,8 +26,8 @@ def create_meeting(meetingJsonData) -> int:
     example meetingJsonData = {
         "summery" : "Daily Sprint Meeting",
         "description" : "Status about the current task and progress",
-        "start_time" : "2025-01-01T01:00:00Z",
-        "end_time" : "2025-01-01T02:00:00Z",
+        "start_time" : "2025-01-01T01:00:00",
+        "end_time" : "2025-01-01T02:00:00",
         "time_zone" : "Asia/Kolkata",
         "attendees" : ["sujanmoi787@gamil.com],
         "video_conference" : true
@@ -38,7 +41,7 @@ def create_meeting(meetingJsonData) -> int:
 @mcp.tool()
 def show_meetings(start_date_time: str, end_date_time: str) -> int:
     """show the list of meetings base on start_date_time and end_date_time
-    example start_date_time=2025-01-01T01:00:00 example end_date_time=2025-01-01T02:00:00"""
+    example start_date_time=2025-01-01T01:00:00Z example end_date_time=2025-01-01T02:00:00Z"""
     try:
         return service.show_meeting(start_date_time, end_date_time)
     except  Exception as e:
